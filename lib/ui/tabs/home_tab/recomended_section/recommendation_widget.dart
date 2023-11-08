@@ -5,6 +5,7 @@ import 'package:movies_app/utils/app_color.dart';
 
 import '../../../../data/model/top_rated_response.dart';
 
+
 class RecommendationWidget extends StatelessWidget {
   final List<TopRatedResult> data;
   final int index;

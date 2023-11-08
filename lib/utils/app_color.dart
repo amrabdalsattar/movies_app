@@ -7,6 +7,7 @@ abstract class AppColor{
   static const Color dateAndFilmDurationColor = Color.fromARGB(255, 180, 179, 180);
   static const Color grey = Color.fromARGB(255, 40, 42, 41);
   static const Color liteGrey = Color.fromARGB(255, 180, 179, 180);
+  static const Color fadedGrey = Color.fromARGB(179, 180, 179, 180);
   static const Color white = Colors.white;
   static const Color transparent = Colors.transparent;
 }

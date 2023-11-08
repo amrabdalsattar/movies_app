@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../../../../data/model/popular_response.dart';
+import '../../../../utils/app_color.dart';
 import '../../../shared_widgets/loading.dart';
 
 class BackDrop extends StatelessWidget {
@@ -28,6 +29,8 @@ class BackDrop extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
+            Center(child: Icon(Icons.play_circle,
+            size: 60, color: AppColor.fadedGrey,))
           ],
         );
       }).toList(),
