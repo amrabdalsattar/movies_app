@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     provider = Provider.of(context);
     return Scaffold(
       bottomNavigationBar: bottomNav(),

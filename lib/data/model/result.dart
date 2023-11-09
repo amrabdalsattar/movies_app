@@ -1,44 +1,5 @@
-import 'package:movies_app/data/model/result.dart';
-
-class PopularResponse {
-  PopularResponse({
-    this.page,
-    this.results,
-    this.totalPages,
-    this.totalResults,
-  });
-
-  PopularResponse.fromJson(dynamic json) {
-    page = json['page'];
-    if (json['results'] != null) {
-      results = [];
-      json['results'].forEach((v) {
-        results?.add(PopularResult.fromJson(v));
-      });
-    }
-    totalPages = json['total_pages'];
-    totalResults = json['total_results'];
-  }
-
-  int? page;
-  List<PopularResult>? results;
-  int? totalPages;
-  int? totalResults;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['page'] = page;
-    if (results != null) {
-      map['results'] = results?.map((v) => v.toJson()).toList();
-    }
-    map['total_pages'] = totalPages;
-    map['total_results'] = totalResults;
-    return map;
-  }
-}
-
-class PopularResult extends Result{
-  PopularResult({
+abstract class Result{
+  Result({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -55,7 +16,7 @@ class PopularResult extends Result{
     this.voteCount,
   });
 
-  PopularResult.fromJson(dynamic json) {
+  Result.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];

@@ -1,27 +1,23 @@
-import 'package:movies_app/data/model/result.dart';
+class DetailsResponse {
+  DetailsResponse({
+      this.page, 
+      this.results, 
+      this.totalPages, 
+      this.totalResults,});
 
-class PopularResponse {
-  PopularResponse({
-    this.page,
-    this.results,
-    this.totalPages,
-    this.totalResults,
-  });
-
-  PopularResponse.fromJson(dynamic json) {
+  DetailsResponse.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(PopularResult.fromJson(v));
+        results?.add(DetailsResults.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
-
   int? page;
-  List<PopularResult>? results;
+  List<DetailsResults>? results;
   int? totalPages;
   int? totalResults;
 
@@ -35,27 +31,27 @@ class PopularResponse {
     map['total_results'] = totalResults;
     return map;
   }
+
 }
 
-class PopularResult extends Result{
-  PopularResult({
-    this.adult,
-    this.backdropPath,
-    this.genreIds,
-    this.id,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.popularity,
-    this.posterPath,
-    this.releaseDate,
-    this.title,
-    this.video,
-    this.voteAverage,
-    this.voteCount,
-  });
+class DetailsResults {
+  DetailsResults({
+      this.adult, 
+      this.backdropPath, 
+      this.genreIds, 
+      this.id, 
+      this.originalLanguage, 
+      this.originalTitle, 
+      this.overview, 
+      this.popularity, 
+      this.posterPath, 
+      this.releaseDate, 
+      this.title, 
+      this.video, 
+      this.voteAverage, 
+      this.voteCount,});
 
-  PopularResult.fromJson(dynamic json) {
+  DetailsResults.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
@@ -71,7 +67,6 @@ class PopularResult extends Result{
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
-
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -105,4 +100,5 @@ class PopularResult extends Result{
     map['vote_count'] = voteCount;
     return map;
   }
+
 }

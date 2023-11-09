@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/utils/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'bookmark.dart';
 import 'loading.dart';
 
 class FilmPoster extends StatefulWidget {
   final String path;
+  final String? title;
+  final String? backDrop;
   final String? description;
   final double? rating;
   final double? releaseDate;
@@ -16,7 +20,7 @@ class FilmPoster extends StatefulWidget {
     required this.path,
     this.description,
     this.rating,
-    this.releaseDate,
+    this.releaseDate, this.backDrop = "", this.title = "",
   });
 
   @override
@@ -25,9 +29,11 @@ class FilmPoster extends StatefulWidget {
 
 class _FilmPosterState extends State<FilmPoster> {
   bool isBookmarked = false;
+  late SettingsProvider provider;
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Container(
       width: 100,
       height: 200, // Increased the height to accommodate additional details
@@ -73,5 +79,19 @@ class _FilmPosterState extends State<FilmPoster> {
         ),
       ),
     );
+  }
+
+  void addMovieToWishList() {
+    CollectionReference moviesCollectionRef =
+        FirebaseFirestore.instance.collection("movies");
+    DocumentReference newEmptyDoc = moviesCollectionRef.doc();
+    newEmptyDoc.set({
+      "title": widget.title,
+      "description": widget.description,
+      "date": widget.releaseDate,
+      "id": newEmptyDoc.id,
+    }).timeout(const Duration(milliseconds: 300), onTimeout: () {
+      provider.refreshMoviesList();
+    });
   }
 }

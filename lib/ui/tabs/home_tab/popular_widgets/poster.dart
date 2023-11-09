@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/data/model/details_response.dart';
+import 'package:movies_app/ui/screens/details_screen.dart';
+import 'package:movies_app/ui/screens/splash.dart';
 import 'package:movies_app/ui/shared_widgets/film_poster.dart';
 
 import '../../../../data/model/popular_response.dart';
@@ -33,9 +36,18 @@ class Poster extends StatelessWidget {
                     flex: 5,
                     child: Container(
                       margin: const EdgeInsets.only(left: 30),
-                      child: FilmPoster(
-                          path:
-                              "https://image.tmdb.org/t/p/w500/${result.posterPath}",),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DetailsScreen(movieId: result.id!,)),
+                          );
+
+                        },
+                        child: FilmPoster(
+                            path:
+                                "https://image.tmdb.org/t/p/w500/${result.posterPath}",),
+                      ),
 
                     )),
                 Expanded(

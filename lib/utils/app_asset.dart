@@ -6,4 +6,5 @@ abstract class AppAsset{
   static const String check = "assets/images/check.png";
   static const String star = "assets/images/star.png";
   static const String filmNotFound = "assets/images/film.png";
+  static const String clacket = "assets/images/clacket.png";
 }

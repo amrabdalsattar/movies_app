@@ -1,3 +1,5 @@
+import 'package:movies_app/data/model/result.dart';
+
 class NewReleaseResponse {
   NewReleaseResponse({
       this.dates, 
@@ -40,7 +42,7 @@ class NewReleaseResponse {
 
 }
 
-class NewReleaseResult {
+class NewReleaseResult extends Result{
   NewReleaseResult({
       this.adult, 
       this.backdropPath, 

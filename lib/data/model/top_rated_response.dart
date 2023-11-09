@@ -1,3 +1,5 @@
+import 'package:movies_app/data/model/result.dart';
+
 class TopRatedResponse {
   TopRatedResponse({
     this.page,
@@ -35,7 +37,7 @@ class TopRatedResponse {
   }
 }
 
-class TopRatedResult {
+class TopRatedResult extends Result{
   TopRatedResult({
     this.adult,
     this.backdropPath,
