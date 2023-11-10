@@ -1,13 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/data/model/MovieDetailsModel.dart';
 import '../../../../data/model/popular_response.dart';
 import '../../../../utils/app_color.dart';
 import '../../../shared_widgets/loading.dart';
 
 class BackDrop extends StatelessWidget {
   final List<PopularResult> data;
-  const BackDrop({super.key, required this.data});
+  final MovieDetailsModel? detailsModel;
+  const BackDrop({super.key, required this.data, this.detailsModel});
 
   @override
   Widget build(BuildContext context) {

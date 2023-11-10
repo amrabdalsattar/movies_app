@@ -1,9 +1,9 @@
 class MovieDm{
-  late String backDropPath;
-  late String title;
-  late String dateRelease;
-  late String description;
-  late String id;
+  late String? backDropPath;
+  late String? title;
+  late String? dateRelease;
+  late String? description;
+  late String? id;
   MovieDm(this.title, this.description, this.backDropPath, this.dateRelease);
 
   MovieDm.fromJson(Map json){

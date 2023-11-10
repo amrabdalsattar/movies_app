@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/utils/app_color.dart';
 import 'package:movies_app/utils/settings_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -9,18 +10,16 @@ import 'loading.dart';
 
 class FilmPoster extends StatefulWidget {
   final String path;
-  final String? title;
   final String? backDrop;
-  final String? description;
-  final double? rating;
+  final String? title;
+  final num? rating;
   final double? releaseDate;
 
   const FilmPoster({
     super.key,
     required this.path,
-    this.description,
     this.rating,
-    this.releaseDate, this.backDrop = "", this.title = "",
+    this.releaseDate, this.backDrop = "", this.title,
   });
 
   @override
@@ -48,19 +47,25 @@ class _FilmPosterState extends State<FilmPoster> {
               placeholder: (_, __) => const LoadingWidget(),
               errorWidget: (_, __, ___) => const Icon(Icons.error),
             ),
-            if (widget.description != null)
+            if (widget.title != null)
               Container(
                 alignment: Alignment.bottomCenter,
                 padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                    AppColor.transparent,
+                    AppColor.black
+                  ]),
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10),
                   ),
                 ),
                 child: Text(
-                  widget.description!,
+                  widget.title!,
                   style: const TextStyle(color: Colors.white),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -71,6 +76,7 @@ class _FilmPosterState extends State<FilmPoster> {
               onBookmarkPressed: () {
                 setState(() {
                   isBookmarked = !isBookmarked;
+                  addMovieToWishList();
                 });
               },
             ),
@@ -87,7 +93,7 @@ class _FilmPosterState extends State<FilmPoster> {
     DocumentReference newEmptyDoc = moviesCollectionRef.doc();
     newEmptyDoc.set({
       "title": widget.title,
-      "description": widget.description,
+      "title": widget.title,
       "date": widget.releaseDate,
       "id": newEmptyDoc.id,
     }).timeout(const Duration(milliseconds: 300), onTimeout: () {

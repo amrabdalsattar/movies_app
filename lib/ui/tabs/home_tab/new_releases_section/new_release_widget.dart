@@ -4,6 +4,7 @@ import 'package:movies_app/ui/shared_widgets/section_title.dart';
 import 'package:movies_app/utils/app_color.dart';
 
 import '../../../../data/model/new_release_response.dart';
+import '../../../screens/details_screen.dart';
 
 class NewReleaseWidget extends StatelessWidget {
   final List<NewReleaseResult> data;
@@ -23,14 +24,27 @@ class NewReleaseWidget extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: data.length,
-              itemBuilder: (context, int index) => FilmPoster(
-                path:
-                    "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
-                description: data[index].title,
+              itemBuilder: (context, int index) => InkWell(
+                child: FilmPoster(
+                  path:
+                      "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
+                  title: data[index].title,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailsScreen(
+                              movieId: data[index].id!,
+                            )),
+                  );
+                },
               ),
             ),
           ),
-          SizedBox(height: 10,)
+          const SizedBox(
+            height: 10,
+          )
         ],
       ),
     );

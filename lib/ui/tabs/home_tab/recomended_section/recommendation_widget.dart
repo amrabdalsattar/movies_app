@@ -4,7 +4,7 @@ import 'package:movies_app/utils/app_asset.dart';
 import 'package:movies_app/utils/app_color.dart';
 
 import '../../../../data/model/top_rated_response.dart';
-
+import '../../../screens/details_screen.dart';
 
 class RecommendationWidget extends StatelessWidget {
   final List<TopRatedResult> data;
@@ -17,11 +17,16 @@ class RecommendationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FilmPoster(
-          path: "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
-          description: data[index].title,
-          rating: data[index].voteAverage!,
-          releaseDate: data[index].voteAverage!,
+        InkWell(
+          child: FilmPoster(
+            path: "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
+            title: data[index].title,
+            rating: data[index].voteAverage!,
+            releaseDate: data[index].voteAverage!,
+          ),
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(movieId: data[index].id!,)),);
+          },
         ),
         const SizedBox(height: 8),
         Column(
@@ -30,7 +35,7 @@ class RecommendationWidget extends StatelessWidget {
             Row(
               children: [
                 Image.asset(AppAsset.star),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -45,7 +50,10 @@ class RecommendationWidget extends StatelessWidget {
             ),
             Text(
               '${data[index].releaseDate}',
-              style: const TextStyle(color: AppColor.liteGrey, fontSize: 10, fontWeight: FontWeight.w400), // Customize the style
+              style: const TextStyle(
+                  color: AppColor.liteGrey,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400), // Customize the style
             ),
           ],
         )

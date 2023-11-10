@@ -9,5 +9,6 @@ abstract class AppColor{
   static const Color liteGrey = Color.fromARGB(255, 180, 179, 180);
   static const Color fadedGrey = Color.fromARGB(179, 180, 179, 180);
   static const Color white = Colors.white;
+  static const Color black = Colors.black;
   static const Color transparent = Colors.transparent;
 }

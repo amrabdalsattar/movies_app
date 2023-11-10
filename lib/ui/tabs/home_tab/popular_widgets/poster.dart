@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/data/model/details_response.dart';
 import 'package:movies_app/ui/screens/details_screen.dart';
-import 'package:movies_app/ui/screens/splash.dart';
 import 'package:movies_app/ui/shared_widgets/film_poster.dart';
 
 import '../../../../data/model/popular_response.dart';
