@@ -17,7 +17,7 @@ class BrowseTab extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,7 +29,7 @@ class BrowseTab extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Expanded(
@@ -50,7 +50,7 @@ class BrowseTab extends StatelessWidget {
                       primary: false,
                       itemBuilder: (context, index) => InkWell(
                         onTap: (){
-                          print("${snapshot.data?[index].id}");
+
                           showSearch(context: context, delegate:
                           MoviesSearch(id: snapshot.data?[index].id));
                         },

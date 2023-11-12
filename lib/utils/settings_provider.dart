@@ -56,7 +56,7 @@ class SettingsProvider extends ChangeNotifier{
       // Delete the document
       await documentReference.delete();
 
-      print('Document deleted successfully!');
+
     } catch (e) {
       print('Error deleting document: $e');
     }

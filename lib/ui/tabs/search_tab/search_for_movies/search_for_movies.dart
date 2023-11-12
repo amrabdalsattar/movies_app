@@ -71,7 +71,7 @@ class MoviesSearch extends SearchDelegate {
         if (snapshot.hasData) {
           bool hasMatches = matchFunction(data, query);
           return Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
             child: hasMatches
                 ? ListView.builder(
               itemCount: data?.length,
@@ -84,7 +84,7 @@ class MoviesSearch extends SearchDelegate {
         } else if (snapshot.hasError) {
           return Text(
             snapshot.error.toString(),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           );
         } else {
           return const LoadingWidget();
@@ -102,7 +102,7 @@ class MoviesSearch extends SearchDelegate {
         if (snapshot.hasData) {
           bool hasMatches = matchFunction(data, query);
           return Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 14),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 14),
             child: hasMatches
                 ? ListView.builder(
               itemCount: data?.length,
@@ -115,7 +115,7 @@ class MoviesSearch extends SearchDelegate {
         } else if (snapshot.hasError) {
           return Text(
             snapshot.error.toString(),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           );
         } else {
           return const LoadingWidget();
@@ -167,14 +167,14 @@ class MoviesSearch extends SearchDelegate {
                     ),
                     maxLines: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     data[index].releaseDate ?? "",
                     style: textStyle,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(

@@ -9,7 +9,7 @@ import '../../../utils/app_color.dart';
 class MovieInWatchlistWidget extends StatefulWidget {
   final MovieDm dataModel;
 
-  MovieInWatchlistWidget({super.key, required this.dataModel});
+  const MovieInWatchlistWidget({super.key, required this.dataModel});
 
   @override
   State<MovieInWatchlistWidget> createState() => _MovieInWatchlistWidgetState();
@@ -51,7 +51,7 @@ class _MovieInWatchlistWidgetState extends State<MovieInWatchlistWidget> {
                 ],
               ),
             ),
-            SizedBox(width: 10,),
+            const SizedBox(width: 10,),
             /// Descriptions
             Expanded(
               child: Column(
@@ -65,9 +65,9 @@ class _MovieInWatchlistWidgetState extends State<MovieInWatchlistWidget> {
                   ),
                   maxLines: 1,
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Text(widget.dataModel.date!, style: textStyle,),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Text(widget.dataModel.overView!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

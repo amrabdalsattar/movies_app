@@ -162,7 +162,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       Column(
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             alignment: Alignment.topLeft,
             height: 60,
             color: AppColor.grey,

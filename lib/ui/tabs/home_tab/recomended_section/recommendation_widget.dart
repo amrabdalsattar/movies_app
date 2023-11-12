@@ -28,7 +28,8 @@ class RecommendationWidget extends StatelessWidget {
             movieId: data[index].id.toString(),
           ),
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(movieId: data[index].id!,)),);
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                DetailsScreen(movieId: data[index].id!,)),);
           },
         ),
         const SizedBox(height: 8),
@@ -44,11 +45,11 @@ class RecommendationWidget extends StatelessWidget {
                 Text(
                   '${data[index].voteAverage}',
                   style:
-                      TextStyle(color: AppColor.white), // Customize the style
+                      const TextStyle(color: AppColor.white), // Customize the style
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
