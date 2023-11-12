@@ -8,6 +8,8 @@ import '../../../../utils/app_asset.dart';
 import '../../../shared_widgets/loading.dart';
 
 class MoviesSearch extends SearchDelegate {
+  final num? id;
+  MoviesSearch({this.id});
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
