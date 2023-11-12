@@ -46,4 +46,20 @@ class SettingsProvider extends ChangeNotifier{
 
     notifyListeners();
   }
+
+  void deleteDocument(String documentId) async {
+    try {
+      // Get a reference to the document
+      DocumentReference documentReference =
+      FirebaseFirestore.instance.collection("movies").doc(documentId);
+
+      // Delete the document
+      await documentReference.delete();
+
+      print('Document deleted successfully!');
+    } catch (e) {
+      print('Error deleting document: $e');
+    }
+  }
+
 }

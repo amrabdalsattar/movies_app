@@ -100,6 +100,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               date: movieDetails?.releaseDate,
                               title: movieDetails?.title,
                               allowedForThisWidget: false,
+                              movieId: movieDetails?.id.toString(),
                         )),
                         Expanded(
                           child: Column(
@@ -189,6 +190,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           date: data[index].releaseDate,
                           overView: data[index].overview,
                           backDrop: data[index].backdropPath,
+                          movieId: data[index].id.toString(),
 
                         ),
                       ],

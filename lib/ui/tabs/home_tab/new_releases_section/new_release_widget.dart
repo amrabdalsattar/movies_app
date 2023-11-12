@@ -33,6 +33,7 @@ class NewReleaseWidget extends StatelessWidget {
                   overView: data[index].overview,
                   rating: data[index].voteAverage,
                   backDrop: "https://image.tmdb.org/t/p/w500/${data[index].backdropPath}",
+                  movieId: data[index].id.toString(),
                 ),
                 onTap: () {
                   Navigator.push(

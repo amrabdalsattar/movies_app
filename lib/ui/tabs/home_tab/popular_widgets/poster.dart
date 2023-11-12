@@ -51,6 +51,7 @@ class Poster extends StatelessWidget {
                           backDrop: "https://image.tmdb.org/t/p/w500/${result.backdropPath}",
                           date: result.releaseDate,
                           allowedForThisWidget: false,
+                          movieId: result.id.toString(),
                         ),
                       ),
 
