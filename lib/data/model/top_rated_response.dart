@@ -87,6 +87,7 @@ class TopRatedResult extends Result{
   double? voteAverage;
   int? voteCount;
 
+  @override
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['adult'] = adult;

@@ -31,7 +31,7 @@ class BackDrop extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
-            Center(child: Icon(Icons.play_circle,
+            const Center(child: Icon(Icons.play_circle,
             size: 60, color: AppColor.fadedGrey,))
           ],
         );

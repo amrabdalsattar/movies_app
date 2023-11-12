@@ -44,7 +44,14 @@ class Poster extends StatelessWidget {
                         },
                         child: FilmPoster(
                             path:
-                                "https://image.tmdb.org/t/p/w500/${result.posterPath}",),
+                                "https://image.tmdb.org/t/p/w500/${result.posterPath}",
+                        rating: result.voteAverage,
+                          title: result.title,
+                          overView: result.overview,
+                          backDrop: "https://image.tmdb.org/t/p/w500/${result.backdropPath}",
+                          releaseDate: result.releaseDate,
+                          allowedForThisWidget: false,
+                        ),
                       ),
 
                     )),

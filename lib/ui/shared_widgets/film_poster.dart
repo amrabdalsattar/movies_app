@@ -13,13 +13,19 @@ class FilmPoster extends StatefulWidget {
   final String? backDrop;
   final String? title;
   final num? rating;
-  final double? releaseDate;
+  final String? releaseDate;
+  final String? overView;
+  final bool allowedForThisWidget;
 
   const FilmPoster({
     super.key,
     required this.path,
     this.rating,
-    this.releaseDate, this.backDrop = "", this.title,
+    this.releaseDate,
+    this.backDrop = "",
+    this.title,
+    this.overView,
+    this.allowedForThisWidget = true,
   });
 
   @override
@@ -47,7 +53,7 @@ class _FilmPosterState extends State<FilmPoster> {
               placeholder: (_, __) => const LoadingWidget(),
               errorWidget: (_, __, ___) => const Icon(Icons.error),
             ),
-            if (widget.title != null)
+            if (widget.title != null && widget.allowedForThisWidget)
               Container(
                 alignment: Alignment.bottomCenter,
                 padding: const EdgeInsets.all(8),
@@ -76,7 +82,10 @@ class _FilmPosterState extends State<FilmPoster> {
               onBookmarkPressed: () {
                 setState(() {
                   isBookmarked = !isBookmarked;
-                  addMovieToWishList();
+                  if(isBookmarked){
+                    addMovieToWishList();
+                  }
+
                 });
               },
             ),
@@ -93,8 +102,9 @@ class _FilmPosterState extends State<FilmPoster> {
     DocumentReference newEmptyDoc = moviesCollectionRef.doc();
     newEmptyDoc.set({
       "title": widget.title,
-      "title": widget.title,
+      "backDrop": widget.backDrop,
       "date": widget.releaseDate,
+      "overView": widget.overView,
       "id": newEmptyDoc.id,
     }).timeout(const Duration(milliseconds: 300), onTimeout: () {
       provider.refreshMoviesList();

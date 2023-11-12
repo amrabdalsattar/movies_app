@@ -40,144 +40,171 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 
-  Widget buildDetailsWidget(MovieDetailsModel? movieDetails) =>
-      Scaffold(
+  Widget buildDetailsWidget(MovieDetailsModel? movieDetails) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColor.transparent,
           elevation: 0,
           title: Text("${movieDetails?.title}"),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                CachedNetworkImage(
-                  imageUrl:
-                  "https://image.tmdb.org/t/p/w500/${movieDetails?.backdropPath}",
-                  placeholder: (_, __) => const LoadingWidget(),
-                  errorWidget: (_, __, ___) => const Icon(Icons.error),
-                  width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
                 children: [
-                  Text(
-                    movieDetails?.title ?? "",
-                    style: const TextStyle(
-                        color: AppColor.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400),
+                  CachedNetworkImage(
+                    imageUrl:
+                        "https://image.tmdb.org/t/p/w500/${movieDetails?.backdropPath}",
+                    placeholder: (_, __) => const LoadingWidget(),
+                    errorWidget: (_, __, ___) => const Icon(Icons.error),
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
                   ),
-                  Text(
-                    movieDetails?.releaseDate ?? "",
-                    style: const TextStyle(
-                        color: AppColor.liteGrey,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: FilmPoster(
-                            path:
-                            "https://image.tmdb.org/t/p/w500/${movieDetails
-                                ?.posterPath}",
-                          )),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              movieDetails?.overview ?? "",
-                              style: const TextStyle(
-                                  color: AppColor.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
-                              maxLines: 7,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset(
-                                  AppAsset.star,
-                                  scale: 0.6,
-                                ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  "${movieDetails?.voteAverage}",
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 18),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  )
                 ],
               ),
-            ),
-            FutureBuilder(
-                future: ApiManager.getSimilar(movieDetails?.id),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return buildSimilarFilmsSection(data: snapshot.data!);
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
-                  } else {
-                    return const LoadingWidget();
-                  }
-                }),
-          ],
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      movieDetails?.title ?? "",
+                      style: const TextStyle(
+                          color: AppColor.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      movieDetails?.releaseDate ?? "",
+                      style: const TextStyle(
+                          color: AppColor.liteGrey,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                            child: FilmPoster(
+                          path:
+                          "https://image.tmdb.org/t/p/w500/${movieDetails?.posterPath}",
+                          backDrop:
+                          "https://image.tmdb.org/t/p/w500/${movieDetails?.backdropPath}",
+                              rating: movieDetails?.voteAverage,
+                              overView: movieDetails?.overview,
+                              releaseDate: movieDetails?.releaseDate,
+                              title: movieDetails?.title,
+                              allowedForThisWidget: false,
+                        )),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                movieDetails?.overview ?? "",
+                                style: const TextStyle(
+                                    color: AppColor.white,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400),
+                                maxLines: 7,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    AppAsset.star,
+                                    scale: 0.6,
+                                  ),
+                                  const SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    "${movieDetails?.voteAverage}",
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 18),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              FutureBuilder(
+                  future: ApiManager.getSimilar(movieDetails?.id),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return buildSimilarFilmsSection(data: snapshot.data!);
+                    } else if (snapshot.hasError) {
+                      return Text(snapshot.error.toString());
+                    } else {
+                      return const LoadingWidget();
+                    }
+                  }),
+            ],
+          ),
         ),
       );
 
   Widget buildSimilarFilmsSection({required List<SimilarResult> data}) =>
-      Container(
-        padding: const EdgeInsets.only(top: 5),
-        height: MediaQuery
-          .of(context)
-          .size
-          .height * 0.2596412556053812,
-        color: AppColor.grey,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: data.length,
-            itemBuilder: (context, index) {
-            return InkWell(
-              child: Column(
-                children: [
-                  FilmPoster(
-                    path: "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
-                    title: data[index].title,
-                    rating: data[index].voteAverage!,
-                  ),
+      Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(20),
+            alignment: Alignment.topLeft,
+            height: 60,
+            color: AppColor.grey,
+            child: const Text("More Like This", style: TextStyle(
+              color: AppColor.white,
+              fontSize: 18, fontWeight: FontWeight.w400
+            ),),
+          ),
+          Container(
+            padding: const EdgeInsets.only(top: 5),
+            height: MediaQuery.of(context).size.height * 0.2596412556053812,
+            color: AppColor.grey,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    child: Column(
+                      children: [
+                        FilmPoster(
+                          path:
+                              "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
+                          title: data[index].title,
+                          rating: data[index].voteAverage!,
+                          releaseDate: data[index].releaseDate,
+                          overView: data[index].overview,
+                          backDrop: data[index].backdropPath,
 
-                ],
-              ),
-              onTap: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)
-                => DetailsScreen(movieId: data[index].id,)),);
-              },
-            );
-            }
-        ),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailsScreen(
+                                  movieId: data[index].id,
+                                )),
+                      );
+                    },
+                  );
+                }),
+          ),
+        ],
       );
 }

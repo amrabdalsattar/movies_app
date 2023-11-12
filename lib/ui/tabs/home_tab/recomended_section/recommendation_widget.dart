@@ -22,7 +22,9 @@ class RecommendationWidget extends StatelessWidget {
             path: "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
             title: data[index].title,
             rating: data[index].voteAverage!,
-            releaseDate: data[index].voteAverage!,
+            releaseDate: "${data[index].voteAverage}",
+            backDrop: "https://image.tmdb.org/t/p/w500/${data[index].backdropPath}",
+            overView: data[index].overview,
           ),
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(movieId: data[index].id!,)),);
