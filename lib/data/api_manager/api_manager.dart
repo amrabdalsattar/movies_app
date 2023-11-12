@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as ht;
 import 'package:movies_app/data/model/new_release_response.dart';
 import 'package:movies_app/data/model/popular_response.dart';
+import 'package:movies_app/data/model/search_response.dart';
 import 'package:movies_app/data/model/similar_response.dart';
 import 'package:movies_app/data/model/top_rated_response.dart';
 
@@ -90,5 +91,25 @@ class ApiManager {
       return movies.results!;
     }
     throw Exception("Something Went Wrong");
+  }
+
+  static Future<List<SearchResults>> getSearch(String? q) async {
+    var headers = {
+      'Authorization':
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNDNmOGY0M2ZhZTc2N2ZhZTQxY2ZhNmJhMWQ5N2Q4ZCIsInN1YiI6IjY1NDNkM2U0ZTFhZDc5MDEwYmNlZmVlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kzuKpANkmRWV0DRTZ7zvUO89EOKSMuADq0-4e1nqyKo'
+    };
+
+    Uri url = Uri.parse("https://api.themoviedb.org/3/search/movie?query=$q&include_adult=false");
+
+    var response = await ht.get(url, headers: headers);
+
+    var jsn = jsonDecode(response.body);
+    SearchResponse movies = SearchResponse.fromJson(jsn);
+    if (response.statusCode >= 200 &&
+        response.statusCode < 300 &&
+        movies.results?.isNotEmpty == true) {
+      return movies.results!;
+    }
+    throw Exception("There is no Matched Movies, Please Enter a valid Key Word");
   }
 }

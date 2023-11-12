@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/ui/tabs/search_tab/search_for_movies/search_for_movies.dart';
 import 'package:movies_app/utils/app_asset.dart';
 
 import '../../../utils/app_color.dart';
@@ -11,32 +12,21 @@ class SearchTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColor.backGroundColor,
-      child: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              SearchBar(
-                controller: searchController,
-                backgroundColor: const MaterialStatePropertyAll(AppColor.grey),
-                hintText: "Search",
-                leading: const Icon(
-                  Icons.search,
-                  color: AppColor.white,
-                ),
-                hintStyle: const MaterialStatePropertyAll(
-                    TextStyle(color: AppColor.liteGrey)),
-                textStyle: const MaterialStatePropertyAll(
-                    TextStyle(color: AppColor.white)),
-              ),
-              Visibility(
-                  visible: visible,
-                  child: Expanded(child: Image.asset(AppAsset.filmNotFound)))
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Search", style: TextStyle(fontSize: 25),),
+        backgroundColor: AppColor.grey,
+        elevation: 0,
+        toolbarHeight: 100,
+        leading:
+          Container(
+            margin: const EdgeInsets.only(left: 30),
+            child: IconButton(onPressed: (){
+              showSearch(context: context, delegate: MoviesSearch());
+            },
+                icon: Icon(Icons.search), color: AppColor.primary,iconSize: 35,),
           ),
-        ),
       ),
     );
   }
