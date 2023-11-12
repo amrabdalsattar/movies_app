@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/ui/tabs/browse_tab.dart';
+import 'package:movies_app/ui/tabs/browse_tab/browse_tab.dart';
 import 'package:movies_app/ui/tabs/home_tab/home_tab.dart';
-import 'package:movies_app/ui/tabs/search_tab.dart';
-import 'package:movies_app/ui/tabs/watchlist_tab.dart';
+import 'package:movies_app/ui/tabs/search_tab/search_tab.dart';
+import 'package:movies_app/ui/tabs/watchlist_tab/watchlist_tab.dart';
 import 'package:movies_app/utils/app_asset.dart';
 import 'package:movies_app/utils/settings_provider.dart';
 import 'package:provider/provider.dart';

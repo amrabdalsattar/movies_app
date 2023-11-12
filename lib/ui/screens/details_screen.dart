@@ -97,7 +97,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           "https://image.tmdb.org/t/p/w500/${movieDetails?.backdropPath}",
                               rating: movieDetails?.voteAverage,
                               overView: movieDetails?.overview,
-                              releaseDate: movieDetails?.releaseDate,
+                              date: movieDetails?.releaseDate,
                               title: movieDetails?.title,
                               allowedForThisWidget: false,
                         )),
@@ -186,7 +186,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
                           title: data[index].title,
                           rating: data[index].voteAverage!,
-                          releaseDate: data[index].releaseDate,
+                          date: data[index].releaseDate,
                           overView: data[index].overview,
                           backDrop: data[index].backdropPath,
 

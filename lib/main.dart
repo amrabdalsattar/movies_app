@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movies_app/firebase_options.dart';
+import 'package:movies_app/utils/firebase_options.dart';
 import 'package:movies_app/ui/screens/home_screen.dart';
 import 'package:movies_app/ui/screens/splash.dart';
 import 'package:movies_app/utils/app_color.dart';

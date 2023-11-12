@@ -13,7 +13,7 @@ class FilmPoster extends StatefulWidget {
   final String? backDrop;
   final String? title;
   final num? rating;
-  final String? releaseDate;
+  final String? date;
   final String? overView;
   final bool allowedForThisWidget;
 
@@ -21,7 +21,7 @@ class FilmPoster extends StatefulWidget {
     super.key,
     required this.path,
     this.rating,
-    this.releaseDate,
+    this.date,
     this.backDrop = "",
     this.title,
     this.overView,
@@ -84,6 +84,7 @@ class _FilmPosterState extends State<FilmPoster> {
                   isBookmarked = !isBookmarked;
                   if(isBookmarked){
                     addMovieToWishList();
+                    provider.refreshMoviesList();
                   }
 
                 });
@@ -103,7 +104,7 @@ class _FilmPosterState extends State<FilmPoster> {
     newEmptyDoc.set({
       "title": widget.title,
       "backDrop": widget.backDrop,
-      "date": widget.releaseDate,
+      "date": widget.date,
       "overView": widget.overView,
       "id": newEmptyDoc.id,
     }).timeout(const Duration(milliseconds: 300), onTimeout: () {

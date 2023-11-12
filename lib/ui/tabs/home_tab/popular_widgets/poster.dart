@@ -49,7 +49,7 @@ class Poster extends StatelessWidget {
                           title: result.title,
                           overView: result.overview,
                           backDrop: "https://image.tmdb.org/t/p/w500/${result.backdropPath}",
-                          releaseDate: result.releaseDate,
+                          date: result.releaseDate,
                           allowedForThisWidget: false,
                         ),
                       ),

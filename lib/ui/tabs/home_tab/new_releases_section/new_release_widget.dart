@@ -29,7 +29,7 @@ class NewReleaseWidget extends StatelessWidget {
                   path:
                       "https://image.tmdb.org/t/p/w500/${data[index].posterPath}",
                   title: data[index].title,
-                  releaseDate: data[index].releaseDate,
+                  date: data[index].releaseDate,
                   overView: data[index].overview,
                   rating: data[index].voteAverage,
                   backDrop: "https://image.tmdb.org/t/p/w500/${data[index].backdropPath}",

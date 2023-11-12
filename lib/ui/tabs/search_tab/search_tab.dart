@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/utils/app_asset.dart';
 
-import '../../utils/app_color.dart';
+import '../../../utils/app_color.dart';
 
 class SearchTab extends StatelessWidget {
   static const bool visible = true;
